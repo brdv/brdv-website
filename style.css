@@ -55,9 +55,15 @@ button {
 /* For phones */
 @media all and (max-width: 480px) {
   .container {
-    padding: 0 2rem;
+    padding: 0 1rem;
     max-width: 100%;
     overflow: hidden;
     max-height: 100%;
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+    width: 95%;
   }
 }
