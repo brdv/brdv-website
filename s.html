@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirect...</title>
+  </head>
+  <body>
+    <p>Loading url...</p>
+  </body>
+  <script>
+    let path = window.location.pathname;
+    let short = path.split('/').pop();
+    fetch(`https://brdv-shrt.herokuapp.com/${short}`)
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = data.url;
+      });
+  </script>
+</html>
