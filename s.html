@@ -15,7 +15,7 @@
     fetch(`https://brdv-shrt.herokuapp.com/${short}`)
       .then((res) => res.json())
       .then((data) => {
-        window.location.href = data.url;
+        console.log(data);
       });
   </script>
 </html>
