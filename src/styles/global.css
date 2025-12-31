@@ -133,22 +133,6 @@ pre {
 pre code {
     background-color: transparent;
     padding: 0;
-    color: inherit;
-}
-
-/* Fix dark mode code block text visibility */
-:root[data-theme="dark"] pre code {
-    color: var(--code-text);
-}
-
-/* Override Shiki dark theme text colors for readability */
-:root[data-theme="dark"] pre {
-    color: var(--code-text);
-}
-
-:root[data-theme="dark"] pre code [style*="color: rgb(36, 41, 46)"],
-:root[data-theme="dark"] pre code [style*="color: #24292e"] {
-    color: var(--code-text) !important;
 }
 
 /* Lists */
