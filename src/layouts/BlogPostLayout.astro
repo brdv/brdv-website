@@ -5,9 +5,10 @@ interface Props {
   title: string;
   date: Date;
   description?: string;
+  readingTime?: number;
 }
 
-const { title, date, description } = Astro.props;
+const { title, date, description, readingTime } = Astro.props;
 
 // Format date
 const formattedDate = new Intl.DateTimeFormat('en-US', {
@@ -22,9 +23,17 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     <header class="post-header">
       <a href="/blog" class="back-link">← Back to posts</a>
       <h1>{title}</h1>
-      <time datetime={date.toISOString()} class="post-date">
-        {formattedDate}
-      </time>
+      <div class="post-meta">
+        <time datetime={date.toISOString()} class="post-date">
+          {formattedDate}
+        </time>
+        {readingTime && (
+          <>
+            <span class="meta-separator">•</span>
+            <span class="reading-time">{readingTime} min read</span>
+          </>
+        )}
+      </div>
     </header>
     
     <div class="post-content">
@@ -60,9 +69,23 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     margin-bottom: 0.5rem;
   }
 
-  .post-date {
-    display: block;
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.95rem;
+    color: var(--text-tertiary);
+  }
+
+  .post-date {
+    color: var(--text-tertiary);
+  }
+
+  .meta-separator {
+    color: var(--text-tertiary);
+  }
+
+  .reading-time {
     color: var(--text-tertiary);
   }
 

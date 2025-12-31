@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { calculateReadingTime } from '../../utils/readingTime';
 
 // Get all blog posts and sort by date (newest first)
 const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => 
+const sortedPosts = allPosts.sort((a, b) =>
   b.data.date.getTime() - a.data.date.getTime()
 );
 
@@ -74,12 +75,14 @@ const monthOrder = [
                         month: 'short',
                         day: 'numeric'
                       }).format(post.data.date);
-                      
+                      const readingTime = calculateReadingTime(post.body);
+
                       return (
                         <li class="post-item">
                           <a href={`/blog/${slug}`} class="post-link">
                             <span class="post-date">{formattedDate}</span>
                             <span class="post-title">{post.data.title}</span>
+                            <span class="reading-time">{readingTime} min</span>
                           </a>
                           {post.data.description && (
                             <p class="post-description">{post.data.description}</p>
@@ -186,6 +189,13 @@ const monthOrder = [
   .post-title {
     font-size: 1rem;
     font-weight: 500;
+    flex: 1;
+  }
+
+  .reading-time {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
   }
 
   .post-description {
