@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const socialLinks = [
+  {
+    name: "Email",
+    url: "mailto:hi@brdv.nl?subject=Hello!",
+    handle: "hi@brdv.nl",
+    description: "Best way to reach me",
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/brdv",
+    handle: "@brdv",
+    description: "Check out my code",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/bramdv/",
+    handle: "bramdv",
+    description: "Professional network",
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/_brdv",
+    handle: "@_brdv",
+    description: "Thoughts and updates",
+  },
+  {
+    name: "All You Can Learn",
+    url: "https://allyoucanlearn.nl/",
+    handle: "allyoucanlearn.nl",
+    description: "My current project",
+  },
+];
+---
+
+<BaseLayout
+  title="Contact | BRDV"
+  description="Get in touch with Bram de Vries"
+>
+  <div class="contact-page">
+    <h1>Get in touch</h1>
+
+    <p>
+      Always in for a chat! Feel free to reach out through any of the channels
+      below.
+    </p>
+
+    <div class="contact-links">
+      {
+        socialLinks.map((link) => (
+          <div class="contact-item">
+            <h3>
+              <a
+                href={link.url}
+                target={link.name === "Email" ? "_self" : "_blank"}
+                rel={link.name === "Email" ? "" : "noopener noreferrer"}
+              >
+                {link.name}
+              </a>
+            </h3>
+            <p class="handle">{link.handle}</p>
+            <p class="description">{link.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    max-width: 65ch;
+  }
+
+  .contact-links {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-item {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-item:last-child {
+    border-bottom: none;
+  }
+
+  .contact-item h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+  }
+
+  .contact-item h3 a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .contact-item h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .handle {
+    margin: 0 0 0.25rem 0;
+    font-family: "Noto Sans", monospace;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .description {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+  }
+</style>

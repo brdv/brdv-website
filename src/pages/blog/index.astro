@@ -1,0 +1,246 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { calculateReadingTime } from "../../utils/readingTime";
+
+// Get all blog posts and sort by date (newest first)
+const allPosts = await getCollection("blog");
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+// Group posts by year and month
+interface PostsByPeriod {
+  [year: string]: {
+    [month: string]: typeof sortedPosts;
+  };
+}
+
+const postsByPeriod: PostsByPeriod = {};
+
+sortedPosts.forEach((post) => {
+  const date = post.data.date;
+  const year = date.getFullYear().toString();
+  const month = date.toLocaleString("en-US", { month: "long" });
+
+  if (!postsByPeriod[year]) {
+    postsByPeriod[year] = {};
+  }
+
+  if (!postsByPeriod[year][month]) {
+    postsByPeriod[year][month] = [];
+  }
+
+  postsByPeriod[year][month].push(post);
+});
+
+// Get years in descending order
+const years = Object.keys(postsByPeriod).sort(
+  (a, b) => parseInt(b) - parseInt(a)
+);
+
+// Month order for sorting
+const monthOrder = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+---
+
+<BaseLayout
+  title="Blog | BRDV"
+  description="Thoughts on software development, technology, and more"
+>
+  <div class="blog-page">
+    <h1>Blog</h1>
+    <p class="intro">
+      Thoughts on software development, technology, and everything in between.
+    </p>
+
+    <div class="posts-by-year">
+      {
+        years.map((year) => {
+          const months = Object.keys(postsByPeriod[year]).sort(
+            (a, b) => monthOrder.indexOf(b) - monthOrder.indexOf(a)
+          );
+
+          return (
+            <section class="year-section">
+              <h2 class="year-heading">{year}</h2>
+
+              {months.map((month) => {
+                const posts = postsByPeriod[year][month];
+
+                return (
+                  <div class="month-section">
+                    <h3 class="month-heading">{month}</h3>
+
+                    <ul class="post-list">
+                      {posts.map((post) => {
+                        const slug = post.data.slug || post.slug;
+                        const formattedDate = new Intl.DateTimeFormat("en-US", {
+                          month: "short",
+                          day: "numeric",
+                        }).format(post.data.date);
+                        const readingTime = calculateReadingTime(post.body);
+
+                        return (
+                          <li class="post-item">
+                            <a href={`/blog/${slug}`} class="post-link">
+                              <span class="post-date">{formattedDate}</span>
+                              <span class="post-title">{post.data.title}</span>
+                              <span class="reading-time">
+                                {readingTime} min
+                              </span>
+                            </a>
+                            {post.data.description && (
+                              <p class="post-description">
+                                {post.data.description}
+                              </p>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+            </section>
+          );
+        })
+      }
+    </div>
+
+    {
+      sortedPosts.length === 0 && (
+        <p class="no-posts">No posts yet. Check back soon!</p>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-page {
+    max-width: 65ch;
+  }
+
+  .intro {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  .posts-by-year {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .year-section {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .year-section:last-child {
+    border-bottom: none;
+  }
+
+  .year-heading {
+    font-size: 1.75rem;
+    margin-bottom: 0;
+    color: var(--text-primary);
+  }
+
+  .month-section {
+    margin-bottom: 2rem;
+  }
+
+  .month-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .month-heading {
+    font-size: 1.1rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-link {
+    display: flex;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.2s ease;
+    align-items: baseline;
+  }
+
+  .post-link:hover {
+    color: var(--accent);
+  }
+
+  .post-link:hover .post-title {
+    text-decoration: underline;
+  }
+
+  .post-date {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    min-width: 60px;
+    flex-shrink: 0;
+  }
+
+  .post-title {
+    font-size: 1rem;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  .reading-time {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .post-description {
+    margin-top: 0.25rem;
+    margin-left: calc(60px + 1rem);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .no-posts {
+    color: var(--text-tertiary);
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .post-link {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .post-description {
+      margin-left: 0;
+    }
+  }
+</style>
