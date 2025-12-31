@@ -121,13 +121,24 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     margin-bottom: 0.5rem;
   }
 
-  .post-content :global(pre) {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border-radius: 8px;
-    overflow-x: auto;
-    background-color: var(--code-bg);
-    border: 1px solid var(--border);
+  /* Override Shiki's inline background styles */
+  .post-content :global(pre),
+  .post-content :global(pre[style]) {
+    margin: 2rem 0 !important;
+    padding: 1.5rem !important;
+    border-radius: 8px !important;
+    overflow-x: auto !important;
+    background-color: var(--code-bg) !important;
+    border: 1px solid var(--border) !important;
+  }
+
+  /* Increase contrast for syntax highlighting */
+  :global([data-theme="dark"]) .post-content :global(pre code) {
+    filter: brightness(1.4) contrast(1.2);
+  }
+
+  :global([data-theme="light"]) .post-content :global(pre code) {
+    filter: contrast(1.15);
   }
 
   .post-content :global(code) {
