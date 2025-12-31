@@ -1,5 +1,5 @@
 ---
-title: "rtodo - part 2: Adding todos"
+title: "rtodo: Adding todos"
 date: 2024-06-19
 slug: "rtodo-adding-todos"
 description: "Adding todos to the todo list"

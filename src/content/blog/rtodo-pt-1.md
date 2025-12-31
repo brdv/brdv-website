@@ -1,5 +1,5 @@
 ---
-title: "rtodo - part 1: Listing todos and handling ids"
+title: "rtodo: Listing todos and handling ids"
 date: 2024-06-05
 slug: "rtodo-listing-todos-handling-ids"
 description: "Listing todos and handling ids for the CLI app"

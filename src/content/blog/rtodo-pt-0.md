@@ -1,5 +1,5 @@
 ---
-title: "rtodo - part 0: Initialisation"
+title: "rtodo: Initialisation"
 date: 2024-04-24
 slug: "rtodo-initialisation"
 description: "Setting up the rtodo project"

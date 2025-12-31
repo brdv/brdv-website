@@ -1,5 +1,5 @@
 ---
-title: "rtodo - part 3: Marking todos as done"
+title: "rtodo: Marking todos as done"
 date: 2024-06-29
 slug: "rtodo-mark-as-done"
 description: "On marking todos as done"
