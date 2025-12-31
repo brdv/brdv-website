@@ -1,14 +1,15 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Personal website of Bram de Vries" } = Astro.props;
+const { title, description = "Personal website of Bram de Vries" } =
+  Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -19,39 +20,48 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
-    
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL('/assets/me-pic.png', Astro.site)} />
+    <meta
+      property="og:image"
+      content={new URL("/assets/me-pic.png", Astro.site)}
+    />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="BRDV" />
-    
+
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/png" href="/assets/me-pic.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <title>{title}</title>
-    
+
     <!-- Theme detection script - runs before page render to prevent flash -->
     <script is:inline>
       function getTheme() {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
         }
-        return 'light';
+        return "light";
       }
-      
+
       const theme = getTheme();
-      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute("data-theme", theme);
     </script>
   </head>
   <body>
@@ -118,4 +128,3 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     }
   }
 </style>
-

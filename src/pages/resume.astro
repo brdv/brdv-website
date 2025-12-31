@@ -1,93 +1,102 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
 // Get all resume sections and sort by order
-const resumeSections = await getCollection('resume');
-const sortedSections = resumeSections.sort((a, b) => a.data.order - b.data.order);
+const resumeSections = await getCollection("resume");
+const sortedSections = resumeSections.sort(
+  (a, b) => a.data.order - b.data.order
+);
 ---
 
-<BaseLayout title="Resume | BRDV" description="Resume of Bram de Vries - Software Developer">
-    <div class="resume-page">
-        <h1>Resume</h1>
-        
-        <p class="intro">
-            Software Developer with a passion for building products that help people.
-            Experienced in full-stack development, data-driven applications, and educational technology.
-        </p>
+<BaseLayout
+  title="Resume | BRDV"
+  description="Resume of Bram de Vries - Software Developer"
+>
+  <div class="resume-page">
+    <h1>Resume</h1>
 
-        <div class="resume-sections">
-            {sortedSections.map(async (section) => {
-                const { Content } = await section.render();
-                return (
-                    <section class="resume-section">
-                        <Content />
-                    </section>
-                );
-            })}
-        </div>
+    <p class="intro">
+      Software Developer with a passion for building products that help people.
+      Experienced in full-stack development, data-driven applications, and
+      educational technology.
+    </p>
 
-        <div class="resume-footer">
-            <p>
-                For a more detailed resume or references, feel free to <a href="/contact">get in touch</a>.
-            </p>
-        </div>
+    <div class="resume-sections">
+      {
+        sortedSections.map(async (section) => {
+          const { Content } = await section.render();
+          return (
+            <section class="resume-section">
+              <Content />
+            </section>
+          );
+        })
+      }
     </div>
+
+    <div class="resume-footer">
+      <p>
+        For a more detailed resume or references, feel free to <a
+          href="/contact">get in touch</a
+        >.
+      </p>
+    </div>
+  </div>
 </BaseLayout>
 
 <style>
-    .resume-page {
-        max-width: 65ch;
-    }
+  .resume-page {
+    max-width: 65ch;
+  }
 
-    .intro {
-        font-size: 1.1rem;
-        color: var(--text-primary);
-        margin-bottom: 3rem;
-    }
+  .intro {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+  }
 
-    .resume-sections {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
+  .resume-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
-    .resume-section {
-        padding-bottom: 2rem;
-        border-bottom: 1px solid var(--border);
-    }
+  .resume-section {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
 
-    .resume-section:last-child {
-        border-bottom: none;
-    }
+  .resume-section:last-child {
+    border-bottom: none;
+  }
 
-    .resume-section :global(h2) {
-        margin-top: 0;
-        color: var(--text-primary);
-    }
+  .resume-section :global(h2) {
+    margin-top: 0;
+    color: var(--text-primary);
+  }
 
-    .resume-section :global(h3) {
-        color: var(--accent);
-        margin-top: 1.5rem;
-    }
+  .resume-section :global(h3) {
+    color: var(--accent);
+    margin-top: 1.5rem;
+  }
 
-    .resume-section :global(strong) {
-        color: var(--text-primary);
-    }
+  .resume-section :global(strong) {
+    color: var(--text-primary);
+  }
 
-    .resume-section :global(ul) {
-        margin-top: 0.5rem;
-    }
+  .resume-section :global(ul) {
+    margin-top: 0.5rem;
+  }
 
-    .resume-footer {
-        margin-top: 3rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-    }
+  .resume-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
 
-    .resume-footer p {
-        color: var(--text-tertiary);
-        font-size: 0.95rem;
-    }
+  .resume-footer p {
+    color: var(--text-tertiary);
+    font-size: 0.95rem;
+  }
 </style>
-

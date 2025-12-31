@@ -4,220 +4,217 @@ import ThemeToggle from "./ThemeToggle.astro";
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-    { href: "/", label: "About" },
-    { href: "/blog", label: "Blog" },
-    { href: "/resume", label: "Resume" },
-    { href: "/contact", label: "Contact" },
+  { href: "/", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/resume", label: "Resume" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const socialLinks = [
-    { href: "https://github.com/brdv", label: "GitHub" },
-    { href: "https://www.linkedin.com/in/bramdv/", label: "LinkedIn" },
-    { href: "https://twitter.com/_brdv", label: "Twitter" },
-    { href: "https://allyoucanlearn.nl/", label: "AYCL" },
+  { href: "https://github.com/brdv", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/bramdv/", label: "LinkedIn" },
+  { href: "https://twitter.com/_brdv", label: "Twitter" },
+  { href: "https://allyoucanlearn.nl/", label: "AYCL" },
 ];
 ---
 
 <header class="header">
-    <div class="header-content">
-        <div class="logo">
-            <a href="/">BRDV</a>
-        </div>
-
-        <nav class="nav">
-            <ul class="nav-list">
-                {
-                    navItems.map((item) => (
-                        <li>
-                            <a
-                                href={item.href}
-                                class:list={[
-                                    "nav-link",
-                                    {
-                                        active:
-                                            currentPath === item.href ||
-                                            (item.href !== "/" &&
-                                                currentPath.startsWith(
-                                                    item.href,
-                                                )),
-                                    },
-                                ]}
-                            >
-                                {item.label}
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
-        </nav>
-
-        <div class="social-links">
-            {
-                socialLinks.map((link) => (
-                    <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social-link"
-                    >
-                        {link.label}
-                    </a>
-                ))
-            }
-        </div>
-
-        <div class="theme-toggle-wrapper">
-            <ThemeToggle />
-        </div>
+  <div class="header-content">
+    <div class="logo">
+      <a href="/">BRDV</a>
     </div>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  "nav-link",
+                  {
+                    active:
+                      currentPath === item.href ||
+                      (item.href !== "/" && currentPath.startsWith(item.href)),
+                  },
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="social-links">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="theme-toggle-wrapper">
+      <ThemeToggle />
+    </div>
+  </div>
 </header>
 
 <style>
+  .header {
+    background-color: var(--bg-primary);
+    border-right: 1px solid var(--border);
+    width: 200px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
+
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .logo {
+    margin-bottom: 2rem;
+  }
+
+  .logo a {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .logo a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav {
+    flex: 1;
+  }
+
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.25rem 0;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .social-link {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .social-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .theme-toggle-wrapper {
+    margin-top: auto;
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
     .header {
-        background-color: var(--bg-primary);
-        border-right: 1px solid var(--border);
-        width: 200px;
-        padding: 2rem 1.5rem;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        position: sticky;
-        top: 0;
-        align-self: flex-start;
-        flex-shrink: 0;
+      position: static;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
     }
 
     .header-content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
-        margin-bottom: 2rem;
+      margin-bottom: 0;
     }
 
     .logo a {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        text-decoration: none;
-    }
-
-    .logo a:hover {
-        color: var(--accent);
-        text-decoration: none;
+      font-size: 1.25rem;
     }
 
     .nav {
-        flex: 1;
+      flex: 0;
+      order: 1;
     }
 
     .nav-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      display: flex;
+      gap: 1rem;
     }
 
     .nav-list li {
-        margin-bottom: 0.5rem;
+      margin-bottom: 0;
     }
 
     .nav-link {
-        display: block;
-        padding: 0.25rem 0;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.95rem;
-        transition: color 0.2s ease;
-    }
-
-    .nav-link:hover {
-        color: var(--accent);
-        text-decoration: none;
-    }
-
-    .nav-link.active {
-        color: var(--accent);
-        font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
     }
 
     .social-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border);
-    }
-
-    .social-link {
-        font-size: 0.875rem;
-        color: var(--text-tertiary);
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-
-    .social-link:hover {
-        color: var(--accent);
-        text-decoration: none;
+      display: none;
     }
 
     .theme-toggle-wrapper {
-        margin-top: auto;
+      margin-top: 0;
+      order: 2;
     }
-
-    /* Mobile styles */
-    @media (max-width: 768px) {
-        .header {
-            position: static;
-            width: 100%;
-            height: auto;
-            border-right: none;
-            border-bottom: 1px solid var(--border);
-            padding: 1rem;
-        }
-
-        .header-content {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            margin-bottom: 0;
-        }
-
-        .logo a {
-            font-size: 1.25rem;
-        }
-
-        .nav {
-            flex: 0;
-            order: 1;
-        }
-
-        .nav-list {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .nav-list li {
-            margin-bottom: 0;
-        }
-
-        .nav-link {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .social-links {
-            display: none;
-        }
-
-        .theme-toggle-wrapper {
-            margin-top: 0;
-            order: 2;
-        }
-    }
+  }
 </style>

@@ -3,59 +3,54 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-    title="BRDV | Personal Website"
-    description="Personal website of Bram de Vries - Software Developer and Tech Enthusiast"
+  title="BRDV | Personal Website"
+  description="Personal website of Bram de Vries - Software Developer and Tech Enthusiast"
 >
-    <div class="about-page">
-        <div class="profile-section">
-            <img
-                src="/assets/me-pic.png"
-                alt="Bram de Vries"
-                class="profile-image"
-            />
-        </div>
-
-        <h1>Hi, I'm Bram</h1>
-
-        <p>Software Developer and Tech Enthusiast based in the Netherlands.</p>
-
-        <p>
-            I like designing, building and evolving software that <strong
-                >helps people</strong
-            >. Mostly interested in things with data.
-        </p>
-
-        <h2>What I'm working on</h2>
-        <p>
-            Currently building educational technology at <a
-                href="https://allyoucanlearn.nl/"
-                target="_blank"
-                rel="noopener noreferrer">All You Can Learn</a
-            >.
-        </p>
-
-        <h2>Get in touch</h2>
-        <p>
-            Always in for a chat! You can reach me at greeting [at] [this
-            domain].
-        </p>
+  <div class="about-page">
+    <div class="profile-section">
+      <img src="/assets/me-pic.png" alt="Bram de Vries" class="profile-image" />
     </div>
+
+    <h1>Hi, I'm Bram</h1>
+
+    <p>Software Developer and Tech Enthusiast based in the Netherlands.</p>
+
+    <p>
+      I like designing, building and evolving software that <strong
+        >helps people</strong
+      >. Mostly interested in things with data.
+    </p>
+
+    <h2>What I'm working on</h2>
+    <p>
+      Currently building educational technology at <a
+        href="https://allyoucanlearn.nl/"
+        target="_blank"
+        rel="noopener noreferrer">All You Can Learn</a
+      >.
+    </p>
+
+    <h2>Get in touch</h2>
+    <p>
+      Always in for a chat! You can reach me at greeting [at] [this domain].
+    </p>
+  </div>
 </BaseLayout>
 
 <style>
-    .about-page {
-        max-width: 65ch;
-    }
+  .about-page {
+    max-width: 65ch;
+  }
 
-    .profile-section {
-        margin-bottom: 2rem;
-    }
+  .profile-section {
+    margin-bottom: 2rem;
+  }
 
-    .profile-image {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid var(--border);
-    }
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border);
+  }
 </style>
