@@ -1,16 +1,32 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="BRDV | Personal Website">
+    <div style="padding: 2rem; max-width: 800px; margin: 0 auto;">
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;"
+        >
+            <h1>Theme Test</h1>
+            <ThemeToggle />
+        </div>
+
+        <p>This is a test page to verify the theme switching functionality.</p>
+
+        <h2>Features to test:</h2>
+        <ul>
+            <li>Click the theme toggle button</li>
+            <li>Theme should switch between light and dark</li>
+            <li>Refresh the page - theme should persist</li>
+            <li>Check browser console for localStorage</li>
+        </ul>
+
+        <h3>Code example:</h3>
+        <pre><code>function hello() {
+  console.log('Hello, world!')
+}</code></pre>
+
+        <p>Link test: <a href="#">This is a link</a></p>
+    </div>
+</BaseLayout>
