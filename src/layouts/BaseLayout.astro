@@ -27,13 +27,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta
       property="og:image"
-      content={new URL("/assets/me-pic.png", Astro.site)}
+      content={new URL("/assets/me-og.jpg", Astro.site)}
     />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="600" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="BRDV" />
 
     <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" type="image/png" href="/assets/me-pic.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" href="/favicon-96.png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

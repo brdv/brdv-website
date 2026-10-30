@@ -8,7 +8,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 >
   <div class="about-page">
     <div class="profile-section">
-      <img src="/assets/me-pic.png" alt="Bram de Vries" class="profile-image" />
+      <img
+        src="/assets/me-240.webp"
+        srcset="/assets/me-120.webp 1x, /assets/me-240.webp 2x, /assets/me-360.webp 3x"
+        width="120"
+        height="120"
+        alt="Bram de Vries"
+        class="profile-image"
+        fetchpriority="high"
+      />
     </div>
 
     <h1>Hi, I'm Bram</h1>
