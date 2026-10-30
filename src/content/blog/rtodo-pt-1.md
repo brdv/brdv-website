@@ -5,7 +5,7 @@ slug: "rtodo-listing-todos-handling-ids"
 description: "Listing todos and handling ids for the CLI app"
 ---
 
-_This one was written over two days. There was quite a period between the two day due to me being sick and being bit busy with other things. Read the first part [here](/blog/rtodo-initialisation) and checkout the code [here](https://github.com/brdv/rtodo)_
+_This one was written over two days. There was quite a period between the two day due to me being sick and being bit busy with other things. Read the first part [here](/blog/rtodo-initialisation/) and checkout the code [here](https://github.com/brdv/rtodo)_
 
 In the previous part, I’ve started with setting up the initialisation of the app. Right now, I have a codebase that simply sets up the files and folders that I’ll be using for the application. The next thing to add, is listing todos
 

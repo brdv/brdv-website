@@ -5,7 +5,7 @@ slug: "rtodo-mark-as-done"
 description: "On marking todos as done"
 ---
 
-_In the [last post](/blog/rtodo-adding-todos), I implemented adding todos to the application. This was quite easy since I did quite some work in the [session before](/blog/rtodo-listing-todos-handling-ids), where I implemented my custom ID handling by saving it into a config file._
+_In the [last post](/blog/rtodo-adding-todos/), I implemented adding todos to the application. This was quite easy since I did quite some work in the [session before](/blog/rtodo-listing-todos-handling-ids/), where I implemented my custom ID handling by saving it into a config file._
 
 This week, I'm working on the last command to finish version 0.1.0. The final task for me is to add the 'do' command. The command should work as follows. Assuming you have the following list:
 

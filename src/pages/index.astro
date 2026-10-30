@@ -1,10 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { person } from "../utils/person";
+
+const jsonLd = {
+  "@type": "ProfilePage",
+  mainEntity: person,
+};
 ---
 
 <BaseLayout
-  title="BRDV | Personal Website"
+  title="Bram de Vries – Software Developer | BRDV"
   description="Personal website of Bram de Vries - Software Developer and Tech Enthusiast"
+  jsonLd={jsonLd}
 >
   <div class="about-page">
     <div class="profile-section">
